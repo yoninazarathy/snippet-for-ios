@@ -75,20 +75,21 @@ class SnippetBlock extends Component{
   setSnippetHTML(newHTML){
     this.setState(prevState => {
       return {
-        snippetHTML: md.render(this.state.snippetString)
+        snippetHTML: newHTML
       }
     })
   }
 
   evalHTML(){
-    var modifiedMD = this.setState.snippetString
+    var modifiedMD = this.state.snippetString
     if(this.state.snippetImageURL !== ""){
       modifiedMD += '\n\r'
       modifiedMD += "[image1]:" + this.state.snippetImageURL
+      console.log("got image")
     }
 
-    //   this.formattedMD = md.render(rawMarkDown)
-    var ht = md.render(this.state.snippetString)
+    console.log(modifiedMD)
+    let ht = md.render(modifiedMD)
     this.setSnippetHTML(ht)
   }
 
@@ -102,7 +103,6 @@ class SnippetBlock extends Component{
         </header>
         <div className = "App-intro">
           <span dangerouslySetInnerHTML={{__html: this.state.snippetHTML}} />
-          <img src={this.state.snippetImageURL} className="App-logo" alt="Image missing" />
         </div>
       </div>
     )
