@@ -85,10 +85,10 @@ class SnippetBlock extends Component{
     if(this.state.snippetImageURL !== ""){
       modifiedMD += '\n\r'
       modifiedMD += "[image1]:" + this.state.snippetImageURL
-      console.log("got image")
+      // console.log("got image")
     }
 
-    console.log(modifiedMD)
+    // console.log(modifiedMD)
     let ht = md.render(modifiedMD)
     this.setSnippetHTML(ht)
   }
