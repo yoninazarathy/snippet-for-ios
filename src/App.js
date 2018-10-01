@@ -34,6 +34,13 @@ md.use(mk);
 // var snippetImageURLstring = "https://es-app.com/snippet-assets/convertFractionToPercent.svg"
 // var snippetTitle = "How can a fraction be converted to a percent?"
 
+function stichLinks(mdText){
+  return mdText.replace(/\[[^\[^\]^\(^\)]*\]\([^\[^\]^\(^\)]*\)/gi,
+    (x) => {return x.replace(/\([^\[^\]^\(^\)]*\)/,
+      (x)=>{return'(search?q='+x.substring(1,x.length-1).split(' ').join('+') +')'})
+  });
+}
+
 class SnippetBlock extends Component{
   constructor(props) {
     super(props);
@@ -88,6 +95,7 @@ class SnippetBlock extends Component{
       // console.log("got image")
     }
 
+    modifiedMD = stichLinks(modifiedMD)
     // console.log(modifiedMD)
     let ht = md.render(modifiedMD)
     this.setSnippetHTML(ht)
